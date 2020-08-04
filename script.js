@@ -2,7 +2,7 @@ const generate = document.getElementsByClassName('generate')[0];
 const gradText = document.getElementsByClassName('gradient-text')[0];
 
 generate.addEventListener('click', function() {
-    // let r = Math.floor(Math.random() * 255);
+  // let r = Math.floor(Math.random() * 255);
   // let g = Math.floor(Math.random() * 255);
   // let b = Math.floor(Math.random() * 255);
 
@@ -49,6 +49,37 @@ generate.addEventListener('click', function() {
   let r2 = rb.toString(16);
   let g2 = gb.toString(16);
   let b2 = bb.toString(16);
+  //
+  // if (r1 <= 'f') {
+  //   r1 = `0${r1}`;
+  // }
+  //
+  // if (g1 <= 'f') {
+  //   g1 = `0${g1}`;
+  // }
+  //
+  // if (b1 <= 'f') {
+  //   b1 = `0${b1}`;
+  // }
+  //
+  // if (r2 <= 'f') {
+  //   r2 = `0${r2}`;
+  // }
+  //
+  // if (g2 <= 'f') {
+  //   g2 = `0${g2}`;
+  // }
+  //
+  // if (b2 <= 'f') {
+  //   b2 = `0${b2}`;
+  // }
+
+  // alert(r1);
+  // alert(g1);
+  // alert(b1);
+  // alert(r2);
+  // alert(g2);
+  // alert(b2);
 
   let color1 = `#${r1}${g1}${b1}`;
   let color2 = `#${r2}${g2}${b2}`;
@@ -56,7 +87,7 @@ generate.addEventListener('click', function() {
 
   let span1 = document.createElement('span');
   span1.setAttribute('class', 'color1');
-  let valueSpan1  = document.createTextNode(color1);
+  let valueSpan1 = document.createTextNode(color1);
   span1.appendChild(valueSpan1);
 
   let comma = document.createElement('span');
@@ -65,11 +96,8 @@ generate.addEventListener('click', function() {
 
   let span2 = document.createElement('span');
   span2.setAttribute('class', 'color2');
-  let valueSpan2  = document.createTextNode(color2);
+  let valueSpan2 = document.createTextNode(color2);
   span2.appendChild(valueSpan2);
-
-  alert(color1);
-  alert(color2);
 
   document.body.style.background = `linear-gradient( ${gradient} )`;
 
