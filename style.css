@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.generate {
+  margin: 150px auto 0;
+  display: block;
+  border: 2px solid #121212;
+  background: #fff;
+  border-radius: 5px;
+  padding: 1em;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.gradient-text {
+  text-align: center;
+  width: 200px;
+  margin: 40px auto 0;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  /* -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  display: block;
+  text-transform: uppercase;
+  padding: 10px 6px;
+  box-sizing: border-box;
+  color: black;
+}
