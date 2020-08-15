@@ -1,7 +1,10 @@
 const generate = document.getElementsByClassName('generate')[0];
 const gradText = document.getElementsByClassName('gradient-text')[0];
+let colors = [];
 
 generate.addEventListener('click', function() {
+  gradText.innerHTML = '';
+
   // let r = Math.floor(Math.random() * 255);
   // let g = Math.floor(Math.random() * 255);
   // let b = Math.floor(Math.random() * 255);
@@ -32,23 +35,22 @@ generate.addEventListener('click', function() {
   // document.body.style.background = 'linear-gradient(rgba('+ra+','+ga+', '+ba+'), rgba('+rb+','+gb+', '+bb+'))';
   // generate.style.background = 'linear-gradient(rgba('+ra+','+ga+', '+ba+'), rgba('+rb+','+gb+', '+bb+'))';
 
-  gradText.innerHTML = '';
 
   // random integer 0 - 255
-  let ra = Math.floor(Math.random() * 255);
-  let ga = Math.floor(Math.random() * 255);
-  let ba = Math.floor(Math.random() * 255);
-  let rb = Math.floor(Math.random() * 255);
-  let gb = Math.floor(Math.random() * 255);
-  let bb = Math.floor(Math.random() * 255);
+  // let ra = Math.floor(Math.random() * 255);
+  // let ga = Math.floor(Math.random() * 255);
+  // let ba = Math.floor(Math.random() * 255);
+  // let rb = Math.floor(Math.random() * 255);
+  // let gb = Math.floor(Math.random() * 255);
+  // let bb = Math.floor(Math.random() * 255);
 
   // convert all random string to hex color #xxxxxx
-  let r1 = ra.toString(16);
-  let g1 = ga.toString(16);
-  let b1 = ba.toString(16);
-  let r2 = rb.toString(16);
-  let g2 = gb.toString(16);
-  let b2 = bb.toString(16);
+  // let r1 = ra.toString(16);
+  // let g1 = ga.toString(16);
+  // let b1 = ba.toString(16);
+  // let r2 = rb.toString(16);
+  // let g2 = gb.toString(16);
+  // let b2 = bb.toString(16);
   //
   // if (r1 <= 'f') {
   //   r1 = `0${r1}`;
@@ -81,8 +83,28 @@ generate.addEventListener('click', function() {
   // alert(g2);
   // alert(b2);
 
-  let color1 = `#${r1}${g1}${b1}`;
-  let color2 = `#${r2}${g2}${b2}`;
+  // Result will be [2, 189, 34, 66, 254, 83];
+  for(let i = 1; i <= 8; i++) {
+    let element = Math.floor(Math.random() * 255);
+    colors.push(element);
+  }
+
+  // Convert integer to Hexadecimal
+  let hexColors = colors.map((element)=> {
+    return element.toString(16);
+  });
+
+  // Menambah string "0" jika element => ( 0 - f )
+  hexColors = hexColors.map((element)=> {
+    if (element.length < 2) {
+      return '0'+element;
+    } else {
+      return element;
+    }
+  });
+
+  let color1 = `#${hexColors[0]}${hexColors[1]}${hexColors[2]}`;
+  let color2 = `#${hexColors[3]}${hexColors[4]}${hexColors[5]}`;
   let gradient = `${color1}, ${color2}`;
 
   let span1 = document.createElement('span');
@@ -111,6 +133,7 @@ generate.addEventListener('click', function() {
   gradText.firstChild.style.backgroundColor = color1;
   gradText.lastChild.style.backgroundColor = color2;
 
-
+  colors = [];
+  hexColors = [];
 
 });
