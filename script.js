@@ -1,88 +1,14 @@
-const generate = document.getElementsByClassName('generate')[0];
-const gradText = document.getElementsByClassName('gradient-text')[0];
+const generate  = document.getElementsByClassName('generate')[0];
+const genResult = document.getElementsByClassName('generate-result')[0];
+
+// var for gradient color
 let colors = [];
 
 generate.addEventListener('click', function() {
-  gradText.innerHTML = '';
+  // Reset div box white bellow generate button
+  genResult.innerHTML = '';
 
-  // let r = Math.floor(Math.random() * 255);
-  // let g = Math.floor(Math.random() * 255);
-  // let b = Math.floor(Math.random() * 255);
-
-  // gradText.innerHTML = gradient;
-
-  // gradText.style.backgroundImage = `linear-gradient( ${gradient} )`;
-  // `rgb(${r},${g},${b})`;
-
-  // let dark_level = (ra + ga + ba + rb + gb + bb) / 6;
-
-  // alert(dark_level);
-
-  // if(dark_level < 128) {
-  //   generate.style.color = '#121212';
-  //   generate.style.border = '1px solid #121212';
-  //   return;
-  // }
-  //
-  // generate.style.color = '#fff';
-  // generate.style.border = '2px solid #fff';
-
-  // let gradient = `#${r1}${g1}${b1}, #${r2}${g2}${b2}`;
-
-  // alert(gradient);
-  // let gradient = `rgb(${ra}, ${ga}, ${ba}), rgb(${rb}, ${gb}, ${bb})`;
-
-  // document.body.style.background = 'linear-gradient(rgba('+ra+','+ga+', '+ba+'), rgba('+rb+','+gb+', '+bb+'))';
-  // generate.style.background = 'linear-gradient(rgba('+ra+','+ga+', '+ba+'), rgba('+rb+','+gb+', '+bb+'))';
-
-
-  // random integer 0 - 255
-  // let ra = Math.floor(Math.random() * 255);
-  // let ga = Math.floor(Math.random() * 255);
-  // let ba = Math.floor(Math.random() * 255);
-  // let rb = Math.floor(Math.random() * 255);
-  // let gb = Math.floor(Math.random() * 255);
-  // let bb = Math.floor(Math.random() * 255);
-
-  // convert all random string to hex color #xxxxxx
-  // let r1 = ra.toString(16);
-  // let g1 = ga.toString(16);
-  // let b1 = ba.toString(16);
-  // let r2 = rb.toString(16);
-  // let g2 = gb.toString(16);
-  // let b2 = bb.toString(16);
-  //
-  // if (r1 <= 'f') {
-  //   r1 = `0${r1}`;
-  // }
-  //
-  // if (g1 <= 'f') {
-  //   g1 = `0${g1}`;
-  // }
-  //
-  // if (b1 <= 'f') {
-  //   b1 = `0${b1}`;
-  // }
-  //
-  // if (r2 <= 'f') {
-  //   r2 = `0${r2}`;
-  // }
-  //
-  // if (g2 <= 'f') {
-  //   g2 = `0${g2}`;
-  // }
-  //
-  // if (b2 <= 'f') {
-  //   b2 = `0${b2}`;
-  // }
-
-  // alert(r1);
-  // alert(g1);
-  // alert(b1);
-  // alert(r2);
-  // alert(g2);
-  // alert(b2);
-
+  // fill colors with 8 random integer
   // Result will be [2, 189, 34, 66, 254, 83];
   for(let i = 1; i <= 8; i++) {
     let element = Math.floor(Math.random() * 255);
@@ -90,50 +16,43 @@ generate.addEventListener('click', function() {
   }
 
   // Convert integer to Hexadecimal
-  let hexColors = colors.map((element)=> {
+  // Result will be [f, 3, d3, e8, b2, 1d];
+  colors = colors.map((element)=> {
     return element.toString(16);
   });
 
   // Menambah string "0" jika element => ( 0 - f )
-  hexColors = hexColors.map((element)=> {
+  colors = colors.map((element)=> {
     if (element.length < 2) {
       return '0'+element;
-    } else {
-      return element;
     }
+      return element;
   });
 
-  let color1 = `#${hexColors[0]}${hexColors[1]}${hexColors[2]}`;
-  let color2 = `#${hexColors[3]}${hexColors[4]}${hexColors[5]}`;
-  let gradient = `${color1}, ${color2}`;
+  let color1    = `#${colors[0]}${colors[1]}${colors[2]}`;
+  let color2    = `#${colors[3]}${colors[4]}${colors[5]}`;
+  let gradient  = `${color1}, ${color2}`;
 
   let span1 = document.createElement('span');
   span1.setAttribute('class', 'color1');
-  let valueSpan1 = document.createTextNode(color1);
-  span1.appendChild(valueSpan1);
+  span1.appendChild(document.createTextNode(color1));
 
   let comma = document.createElement('span');
-  let valueComma = document.createTextNode(', ');
-  comma.appendChild(valueComma);
+  comma.appendChild(document.createTextNode(', '));
 
   let span2 = document.createElement('span');
   span2.setAttribute('class', 'color2');
-  let valueSpan2 = document.createTextNode(color2);
-  span2.appendChild(valueSpan2);
+  span2.appendChild(document.createTextNode(color2));
 
-  document.body.style.background = `linear-gradient( ${gradient} )`;
+  genResult.appendChild(span1);
+  genResult.appendChild(comma);
+  genResult.appendChild(span2);
 
-  generate.style.background = `linear-gradient( ${gradient} )`;
+  genResult.firstChild.style.backgroundColor = color1;
+  genResult.lastChild.style.backgroundColor = color2;
 
-
-  gradText.appendChild(span1);
-  gradText.appendChild(comma);
-  gradText.appendChild(span2);
-
-  gradText.firstChild.style.backgroundColor = color1;
-  gradText.lastChild.style.backgroundColor = color2;
+  document.body.style.background  = `linear-gradient( ${gradient} )`;
+  generate.style.background       = `linear-gradient( ${gradient} )`;
 
   colors = [];
-  hexColors = [];
-
 });
